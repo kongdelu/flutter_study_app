@@ -1,0 +1,9 @@
+{
+  "username": "username",
+  "password": "password",
+  "register": "register",
+  "item": "item",
+  "home": "Home",
+  "business": "Business",
+  "school": "School"
+}
