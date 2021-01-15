@@ -119,7 +119,7 @@ class _PageRoute1State extends State<PageRoute1> {
               return GestureDetector(
                 child: Container(
                     margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    color: Colors.orange,
+                    color: Colors.blue,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
@@ -128,7 +128,7 @@ class _PageRoute1State extends State<PageRoute1> {
                       textBaseline: TextBaseline.alphabetic,
                       children: <Widget>[
                         _getListCell(Icons.access_alarm, _items[index]),
-                        SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
+                        //SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
                         //Icon(Icons.access_time)
                       ],
                     )
@@ -144,9 +144,8 @@ class _PageRoute1State extends State<PageRoute1> {
 
   void onItemClick(int index) async{
     Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("点击了第 $index 行")));
-    // var result = await ApiManager.request('',method: ApiManager.GET,
-    //     data: {'id':1});
-    // print('返回数据: $result');
+    var result = await ApiManager.request('',method: ApiManager.GET);
+    print('返回数据: $result');
   }
 
   ///返回一个居中带图标和文本的Item

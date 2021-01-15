@@ -41,13 +41,12 @@ dependencies:
   # Net
   dio: ^3.0.1
   dio_cookie_manager: ^1.0.0
-
   device_info: ^0.4.0+1
   package_info: ^0.4.0+6
-
   #加密算法
   crypto: ^2.1.5
   json_serializable: ^3.2.5
+  dokit: 0.2.2
 
 dev_dependencies:
   flutter_test:

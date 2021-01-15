@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_study_app/config/app_config.dart';
-import 'package:flutter_study_app/config/urls.dart';
+import 'package:flutter_study_app/net/urls.dart';
 import 'dart:async';
 
 import 'request_interceptors.dart';

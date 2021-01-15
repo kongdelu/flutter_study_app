@@ -1,6 +1,8 @@
 
 import 'dart:async';
 
+import 'package:dokit/dokit.dart';
+import 'package:dokit/ui/dokit_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_study_app/config/app_config.dart';
@@ -16,7 +18,7 @@ Widget getErrorWidget(dynamic details) {
   return Container(
     color: Colors.white,
     child: Center(
-      child: Text("出错啦！！！",style: TextStyle(color: Colors.black,fontSize: 26)),
+      child: Text('出错啦！',style: TextStyle(color: Colors.black,fontSize: 26)),
     )
   );
 }
@@ -24,7 +26,7 @@ Widget getErrorWidget(dynamic details) {
 void main() {
   ///自定义红屏异常
   ErrorWidget.builder = (FlutterErrorDetails details) {
-    ExceptionReporter.reportError(details, null);
+    Zone.current.handleUncaughtError(details.exception, details.stack);
     return MaterialApp(
       title: 'Error Widget',
       theme: ThemeData(
@@ -53,11 +55,17 @@ void main() {
 
   runZoned(() async {
     runApp(MyApp());
-  }, onError: (dynamic error,StackTrace stackTrace) async {
-    showToast(">>>"+error.toString());
+  }, onError: (dynamic error, StackTrace stackTrace) async {
     //Sentry上报
     ExceptionReporter.reportError(error, stackTrace);
   });
+
+  // DoKit.runApp(app:DoKitApp(MyApp()),
+  //     // 是否在release包内使用，默认release包会禁用
+  //     useInRelease: true,
+  //     releaseAction: () => {
+  //       // release模式下执行该函数，一些用到runZone之类实现的可以放到这里，该值为空则会直接调用系统的runApp(MyApp())，
+  // });
 }
 
 class MyApp extends StatelessWidget {

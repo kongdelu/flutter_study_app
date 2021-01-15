@@ -1,8 +1,8 @@
 
 import 'package:flutter_study_app/utils/platform_utils.dart';
-import 'package:sentry/sentry.dart';
-// import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sentry/sentry.dart' as Sentry;
+// import 'package:sentry_flutter/sentry_flutter.dart';
+
 
 
 var _sentryClient = Sentry.SentryClient(
@@ -28,18 +28,18 @@ class ExceptionReporter {
       '\n 错误信息 \n': error.toString()
     };
     // Sentry上报
-    //_sentryClient.captureException(exception: '$_errMap',stackTrace: stackTrace);
-    final SentryResponse response = await _sentryClient.capture(
-      event: Event(
-        exception: '$_errMap',
-        stackTrace: stackTrace,
-      ),
-    );
-    // 上报结果处理
-    if (response.isSuccessful) {
-      print('Success! Event ID: ${response.eventId}');
-    } else {
-      print('Failed to report to Sentry.io: ${response.error}');
-    }
+    _sentryClient.captureException(exception: '$_errMap',stackTrace: stackTrace);
+    // final Sentry.SentryResponse response = await _sentryClient.capture(
+    //   event: Sentry.Event(
+    //     exception: '$_errMap',
+    //     stackTrace: stackTrace,
+    //   ),
+    // );
+    // // 上报结果处理
+    // if (response.isSuccessful) {
+    //   print('Success! Event ID: ${response.eventId}');
+    // } else {
+    //   print('Failed to report to Sentry.io: ${response.error}');
+    // }
   }
 }
